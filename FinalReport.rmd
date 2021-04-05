@@ -32,18 +32,18 @@ If not, then whose view differs from whom??
 ### Graphical Descriptive Results
 
 ```{r}
-barchartGC(~BIGBANG + POSTLIFE,data=GSS)
-barchartGC(~BIGBANG + POSTLIFE,data=GSS, type="percent")
+barchartGC(~BIGBANG + RACE,data=GSS)
+barchartGC(~BIGBANG + RACE,data=GSS, type="percent")
 
 ```
 ```{r}
-dd2 <- GSS %>% group_by(BIGBANG,POSTLIFE) %>% summarize(count=n()) %>% mutate(prcnt=count/sum(count))
+dd2 <- GSS %>% group_by(BIGBANG,RACE) %>% summarize(count=n()) %>% mutate(prcnt=count/sum(count))
 
-basicC <- ggplot(dd2,aes(x=BIGBANG,y=count,fill=POSTLIFE))
+basicC <- ggplot(dd2,aes(x=BIGBANG,y=count,fill=RACE))
 basicC + geom_bar(stat="identity",position="dodge")
 #Now for percentage plot
 
-basicCC <- ggplot(dd2,aes(x=BIGBANG,y=prcnt*100,fill=POSTLIFE)) 
+basicCC <- ggplot(dd2,aes(x=BIGBANG,y=prcnt*100,fill=RACE)) 
 basicCC + geom_bar(stat="identity", position = "dodge")
 ```
 
@@ -54,7 +54,7 @@ This barchart shows that people believe in the BIGBANG theory are less likely to
 ### Numerical Descriptive Results
 
 ```{r}
-table1 <- xtabs(~BIGBANG + POSTLIFE, data=GSS)
+table1 <- xtabs(~BIGBANG + RACE, data=GSS)
 rowPerc(table1)
 colPerc(table1)
 ```
@@ -83,4 +83,4 @@ The p-value is 0.07, which is not a small number. This indicated that there is n
 <!--Discussion and conclusion here.  If you found a relationship be sure to consider whether the relationship occurs because one of the variavbles causes the other, or whether they perhasps are related for some other reason.  Watch the chapter 6 videos from the GeorgeTown videos collection.!-->
 
 
-Since we reject the null hypothesis, the evidence shows that the belief in the BIGBANG theory and belief in the POSTLIFE theory are independent.
+Since we reject the null hypothesis, the evidence shows that the belief in the BIGBANG theory and belief in the POSTLIFE theory are independent of race.
